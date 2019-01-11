@@ -50,14 +50,14 @@ app.use('/api/v1', api);
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
     res.status(404);
-    log.error('%s %d %s', req.method, res.statusCode, req.url);
+    log.error(`${req.method} ${res.statusCode} ${req.url}`);
     res.json({ error: 'Error 404: Page not found' }).end();
 });
 
 // Express' default error handler
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
-    log.error('%s %d %s', req.method, res.statusCode, err.message);
+    log.error(`${req.method} ${res.statusCode} ${err.message}`);
     log.error(`Route: ${req.originalUrl}`);
     log.error(err);
     res.json({ error: err.message }).end();
