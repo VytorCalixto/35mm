@@ -1,0 +1,44 @@
+{
+    "development":
+    {
+        "port": 3000,
+        "ip": "127.0.0.1",
+        "debug" : true,
+        "mongodb" : {
+            "uri": "mongodb://localhost/dev_35mm"
+        },
+        "default": {
+            "api": {
+                "version" : "v1"
+            }
+        }
+    },
+    "test":
+    {
+        "port": 4000,
+        "ip": "127.0.0.1",
+        "debug" : true,
+        "mongodb" : {
+            "uri": "mongodb://localhost/test_35mm"
+        },
+        "default": {
+            "api": {
+                "version" : "v1"
+            }
+        }
+    },
+    "production":
+    {
+        "port": 5000,
+        "ip": "127.0.0.1",
+        "debug" : true,
+        "mongodb" : {
+            "uri": "mongodb://localhost/35mm"
+        },
+        "default": {
+            "api": {
+                "version" : "v1"
+            }
+        }
+    }
+}
