@@ -33,7 +33,7 @@ module.exports = () => {
     const mongoUri = process.env.MONGO_URI || config.mongodb.uri;
     log.info(`Connecting to MongoDB on URI ${mongoUri}`);
     // Connection singleton
-    const db = mongoose.connect(mongoUri);
+    const db = mongoose.connect(mongoUri, {useNewUrlParser: true});
 
     mongoose.connection.once('open', () => { log.info("MongoDB connected"); });
 
