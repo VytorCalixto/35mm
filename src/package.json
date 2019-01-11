@@ -1,0 +1,26 @@
+{
+  "name": "35mm",
+  "version": "0.1.0",
+  "description": "A personal movie catalogue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VytorCalixto/35mm.git"
+  },
+  "keywords": [
+    "react",
+    "nodejs",
+    "movies",
+    "material-ui",
+    "mongodb"
+  ],
+  "author": "Vytor Calixto <vytorcalixto@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/VytorCalixto/35mm/issues"
+  },
+  "homepage": "https://github.com/VytorCalixto/35mm#readme"
+}
