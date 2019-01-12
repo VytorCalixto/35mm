@@ -26,9 +26,13 @@ const libs = `${process.cwd()}/libs`;
 
 const config = require(`${libs}/config`);
 
+const movies = require(`${libs}/routes/movies`)
+
 api.get('/', (req, res) => {
     res.json({ msg: '35mm API is running' });
 });
+
+api.use('/movies', movies);
 
 // mount API routes
 module.exports = api;
