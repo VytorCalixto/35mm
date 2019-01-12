@@ -21,8 +21,8 @@ along with 35mm.  If not, see <https://www.gnu.org/licenses/>.
 const mongoose = require('mongoose');
 
 const libs = `${process.cwd()}/libs`;
-const log = require(`${libs}/log`)(module);
-const User = require(`${libs}/models/user`);
+
+const log = require(`${libs}/log`);
 
 const Schema = mongoose.Schema;
 
