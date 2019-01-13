@@ -38,14 +38,16 @@ let MovieSchema = new Schema({
     release_date: {
         type: String // FIXME: Change to date
     },
-    actors: [], // TODO: Create actor schema
+    actors: {
+        type: String
+    }, // TODO: Create actor schema
     plot: {
         type: String
     },
     trailer: {
         type: String
     }
-    // TODO: link to mopvie poster?
+    // TODO: link to movie poster?
 });
 
 module.exports = mongoose.model('Movie', MovieSchema);

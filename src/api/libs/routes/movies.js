@@ -52,13 +52,58 @@ movieApp.get('/:id', (req, res, next) => {
 });
 
 movieApp.post('/', (req, res, next) => {
-    // TODO: Criar filme
-    return res.json({todo: true});
+    let movie = new Movie({
+        title: req.body.title,
+        genre: req.body.genre,
+        release_date: req.body.release_date,
+        actors: req.body.actors,
+        plot: req.body.plot,
+        trailer: req.body.trailer
+    });
+    movie.save((err) => {
+        if(err) {
+            log.error(err);
+            let errors = [];
+            for(let errName in err.errors) {
+                errors.push(err.errors[errName].message);
+              }
+              log.error(errors);
+              res.statusCode = 400;
+              return res.json({err, errors});
+        }
+
+        return res.json({movie});
+    });
 });
 
 movieApp.put('/:id', (req, res, next) => {
-    // TODO: Atualizar filme
-    return res.json({todo: true});
+    Movie.findById(req.params.id, (err, movie) => {
+        if(err) {
+            log.error(err);
+            return next(err);
+        }
+
+        if(!movie) {
+            res.statusCode = 404;
+            return next({err: {message: 'Movie not found'}});
+        }
+
+        movie.title = req.body.title || movie.title;
+        movie.genre = req.body.genre || movie.genre;
+        movie.release_date = req.body.release_date || movie.release_date;
+        movie.actors = req.body.actors || movie.actors;
+        movie.plot = req.body.plot || movie.plot;
+        movie.trailer = req.body.trailer || movie.trailer;
+
+        movie.save((err) => {
+            if(err) {
+                log.error(err);
+                return next(err);
+            }
+
+            res.json({movie});
+        });
+    });
 });
 
 module.exports = movieApp;
