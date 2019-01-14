@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "populate": "node generateData.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Vytor Calixto <vytorcalixto@gmail.com>",
