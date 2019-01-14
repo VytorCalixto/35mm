@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_URL = 'http://localhost:3333/api/v1/';
-const OMDB_API = 'http://www.omdbapi.com/?apikey=a8aae0f1&';
+const OMDB_API = 'http://www.omdbapi.com/?apikey=a8aae0f1&plot=full&';
 
 // Movies actions
 export function getMovies() {

@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import CardMedia from '@material-ui/core/CardMedia';
+import Truncate from 'react-truncate';
 
 const styles = {
     card: {
@@ -46,7 +47,9 @@ class MovieCard extends Component {
                         {this.props.movie.release_date}
                     </Typography>
                     <Typography component="p">
-                        {this.props.movie.plot}
+                        <Truncate lines={3} ellipsis={<span>...</span>}>
+                            {this.props.movie.plot}
+                        </Truncate>
                     </Typography>
                 </CardContent>
                 <CardActions>
