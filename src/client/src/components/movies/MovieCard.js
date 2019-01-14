@@ -43,7 +43,7 @@ class MovieCard extends Component {
                 </CardContent>
                 <CardActions>
                     
-                    <Link to={"movies/" + this.props.movie._id}><Button size='small'>See More</Button></Link>
+                    <Link to={"movies/" + this.props.movie._id}><Button size='small' variant="contained" color="primary">See More</Button></Link>
                 </CardActions>
             </Card>
         );

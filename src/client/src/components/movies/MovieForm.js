@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import DoneIcon from '@material-ui/icons/Done';
 
 class MovieForm extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class MovieForm extends Component {
     }
 
     componentWillMount() {
-        if(!this.state.set && Object.keys(this.props.movie).length) {
+        if (!this.state.set && Object.keys(this.props.movie).length) {
             this.setState({
                 title: this.props.movie.title || this.props.movie.Title || '',
                 genre: this.props.movie.genre || this.props.movie.Genre || '',
@@ -37,7 +38,7 @@ class MovieForm extends Component {
 
     componentWillReceiveProps(nextProps) {
         console.log(nextProps.movie);
-        if(nextProps.movie) {
+        if (nextProps.movie) {
             this.setState({
                 title: nextProps.movie.title || nextProps.movie.Title || '',
                 genre: nextProps.movie.genre || nextProps.movie.Genre || '',
@@ -68,7 +69,7 @@ class MovieForm extends Component {
         }
         this.props.submit(movie);
     }
-    
+
     render() {
         return (
             <React.Fragment>
@@ -77,25 +78,28 @@ class MovieForm extends Component {
                 </Typography>
                 <Grid container spacing={24}>
                     <Grid item xs={12} sm={6}>
-                        <TextField variant="outlined" required id="title" name="title" label="Movie Title" fullWidth onChange={this.handleInputChange} value={this.state.title}/>
+                        <TextField variant="outlined" required id="title" name="title" label="Movie Title" fullWidth onChange={this.handleInputChange} value={this.state.title} />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <TextField variant="outlined" required id="genre" name="genre" label="Movie Genre" fullWidth onChange={this.handleInputChange} value={this.state.genre}/>
+                        <TextField variant="outlined" required id="genre" name="genre" label="Movie Genre" fullWidth onChange={this.handleInputChange} value={this.state.genre} />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <TextField variant="outlined" id="release_date" name="release_date" label="Release Date" fullWidth onChange={this.handleInputChange} value={this.state.release_date}/>
+                        <TextField variant="outlined" id="release_date" name="release_date" label="Release Date" fullWidth onChange={this.handleInputChange} value={this.state.release_date} />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <TextField variant="outlined" id="actors" name="actors" label="Actors" fullWidth onChange={this.handleInputChange} value={this.state.actors}/>
+                        <TextField variant="outlined" id="actors" name="actors" label="Actors" fullWidth onChange={this.handleInputChange} value={this.state.actors} />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <TextField variant="outlined" id="plot" name="plot" label="Movie Plot" fullWidth multiline rowsMax="4" onChange={this.handleInputChange} value={this.state.plot}/>
+                        <TextField variant="outlined" id="plot" name="plot" label="Movie Plot" fullWidth multiline rowsMax="4" onChange={this.handleInputChange} value={this.state.plot} />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <TextField variant="outlined" id="trailer" name="trailer" label="Trailer Link" fullWidth onChange={this.handleInputChange} value={this.state.trailer}/>
+                        <TextField variant="outlined" id="trailer" name="trailer" label="Trailer Link" fullWidth onChange={this.handleInputChange} value={this.state.trailer} />
                     </Grid>
                 </Grid>
-                <Button variant="outlined" color="primary" onClick={this.handleSubmit}>{this.props.buttonName}</Button>
+                <Button variant="contained" color="primary" onClick={this.handleSubmit}>
+                    {this.props.buttonName}
+                    <DoneIcon />
+                </Button>
             </React.Fragment>
         );
     }
