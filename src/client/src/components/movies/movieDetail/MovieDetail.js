@@ -3,32 +3,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class MovieDetail extends Component {
-  componentWillMount() {
-    // Before the component mounts, we will get the movies
-  }
+    constructor(props) {
+        super(props);
+        this.state = {edit: false};
+    }
 
-  render() {
-    return (
-      <div className="App">
-        <h1>MOVIE DETAIL</h1>
-        <p>{this.props.match.params.movieId}</p>
-      </div>
-    );
-  }
+    render() {
+        const movie = this.props.movies.find((m) => {
+            if (m._id === this.props.match.params.movieId) return m;
+            return false;
+        });
+        console.log(movie);
+        return (
+            <div className="App">
+                <h1>{movie ? movie.title: null}</h1>
+
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = (state) => {
-  return {
-    movies: state.movies
-  }
+    return {
+        movies: state.movies
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    getAllMovies: () => {
-      dispatch(getMovies());
+    return {
+        getAllMovies: () => {
+            dispatch(getMovies());
+        }
     }
-  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetail);

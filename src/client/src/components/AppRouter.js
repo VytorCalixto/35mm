@@ -5,7 +5,6 @@ import NavBar from './NavBar';
 import Home from './home/Home';
 import Login from './login/Login';
 import Movies from './movies/Movies';
-import MovieDetail from './movies/movieDetail/MovieDetail';
 
 const AppRouter = ({ store }) => (
     <Provider store={store}>
