@@ -1,4 +1,4 @@
-import { editMovie } from '../../../actions/actionCreator';
+import { editMovie, deleteMovie } from '../../../actions/actionCreator';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,6 +9,8 @@ import Icon from '@material-ui/core/Icon';
 import CloseIcon from '@material-ui/icons/Close';
 import MovieForm from '../MovieForm';
 import TrailerEmbed from './TrailerEmbed';
+import Button from '@material-ui/core/Button';
+import TrashIcon from '@material-ui/icons/Delete';
 
 const styles = theme => ({
     fab: {
@@ -62,6 +64,10 @@ class MovieDetail extends Component {
                             <Typography component="p">
                                 {movie.plot}
                             </Typography>
+                            <Button variant="contained" color="secondary" onClick={()=> this.props.deleteMovie(this.props.match.params.movieId)}>
+                                <TrashIcon/>
+                                Delete
+                            </Button>
                         </Paper>
                         <Fab color="primary" aria-label="Add" className={classes.fab} onClick={() => { this.setState({ edit: !this.state.edit }) }}>
                             {this.state.edit ? (<CloseIcon />) : (<Icon>edit_icon</Icon>)}
@@ -88,6 +94,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         updateMovie: (movie) => {
             dispatch(editMovie(movie));
+        },
+        deleteMovie: (movieId) => {
+            dispatch(deleteMovie(movieId));
         }
     }
 }

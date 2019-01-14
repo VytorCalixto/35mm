@@ -40,6 +40,18 @@ export function addMovie(movie) {
     };
 }
 
+export function deleteMovie(movieId) {
+    return (dispatch) => {
+        dispatch({type: 'DELETE_MOVIE'});
+        axios.delete(API_URL + '/movies/' + movieId).then((res) => {
+            const data = res.data;
+            dispatch({type: 'DELETE_MOVIE_SUCCESS', data});
+        }).catch((err) => {
+            dispatch({type: 'DELETE_MOVIE_ERROR', err});
+        });
+    }
+}
+
 // OMDB API
 export function searchOMDB(title) {
     return (dispatch) => {

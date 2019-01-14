@@ -12,8 +12,8 @@ const AppRouter = ({ store }) => (
         <Router history={history}>
             <div>
                 <NavBar history={history} />
-                <Route path="/" exact component={Home} />
-                <Route path="/login" component={Login} />
+                <Route path="/" exact component={Login} />
+                {/* <Route path="/login" component={Login} /> */}
                 <Route path="/movies" component={Movies} />
                 {/* <Route path="/movies/:id" component={MovieDetail} /> */}
             </div>

@@ -77,6 +77,7 @@ function SignIn(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={() => props.history.push('/movies')}
           >
             Sign in
           </Button>
