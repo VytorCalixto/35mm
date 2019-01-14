@@ -29,28 +29,11 @@ const db = mongoose();
 
 const log = require(`${libs}/log`);
 
-const Movie = require(`${libs}/models/movie`);
+const populate = require(`${libs}/data/populate`);
 
-const moviesData = require(`${libs}/data/movies`);
-
-moviesData.movies.forEach((m) => {
-    let movie = new Movie({
-        title: m.title,
-        genre: m.genre,
-        release_date: m.release_date,
-        actors: m.actors,
-        plot: m.plot,
-        trailer: m.trailer,
-    });
-
-    movie.save((err, movie) => {
-        if(err) {
-            return log.error(err);
-        }
-        console.log('Inserted movie ' + movie.title);
-    });
-});
+populate();
 
 setTimeout(() => {
     console.log('Done');
+    process.exit();
 }, 5000);
