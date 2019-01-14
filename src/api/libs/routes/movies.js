@@ -106,4 +106,15 @@ movieApp.put('/:id', (req, res, next) => {
     });
 });
 
+movieApp.delete('/:id', (req, res, next) => {
+    Movie.findByIdAndRemove(req.params.id, (err) => {
+        if(err) {
+            log.error(err);
+            return next(err);
+        }
+
+        return res.json({movie: req.params.id});
+    });
+});
+
 module.exports = movieApp;

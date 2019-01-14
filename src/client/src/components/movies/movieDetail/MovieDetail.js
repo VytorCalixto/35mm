@@ -11,6 +11,7 @@ import MovieForm from '../MovieForm';
 import TrailerEmbed from './TrailerEmbed';
 import Button from '@material-ui/core/Button';
 import TrashIcon from '@material-ui/icons/Delete';
+import {Link} from 'react-router-dom';
 
 const styles = theme => ({
     fab: {
@@ -64,8 +65,8 @@ class MovieDetail extends Component {
                             <Typography component="p">
                                 {movie.plot}
                             </Typography>
-                            <Button variant="contained" color="secondary" onClick={()=> this.props.deleteMovie(this.props.match.params.movieId)}>
-                                <TrashIcon/>
+                            <Button variant="contained" color="secondary" onClick={() => this.props.deleteMovie(this.props.match.params.movieId)}>
+                                <TrashIcon />
                                 Delete
                             </Button>
                         </Paper>
@@ -73,7 +74,13 @@ class MovieDetail extends Component {
                             {this.state.edit ? (<CloseIcon />) : (<Icon>edit_icon</Icon>)}
                         </Fab>
                     </div>
-                ) : null}
+                ) : (
+                        <Typography variant='h2' component='h1'>
+                            The movie you're searcing for doesn't exist :(
+                                <br />
+                            <Link to="/movies"><Button color="secondary" variant="contained">Go back!</Button></Link>
+                        </Typography>
+                    )}
                 {this.state.edit ? (
                     <Paper className={classes.paper}>
                         <MovieForm movie={movie} buttonName="Edit" submit={this.props.updateMovie} />

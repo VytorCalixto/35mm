@@ -22,6 +22,17 @@ function movies(state = [], action) {
             return [...state, action.data];
         case 'ADD_MOVIE_ERROR':
             return state;
+        case 'DELETE_MOVIE':
+            return state;
+        case 'DELETE_MOVIE_SUCCESS':
+            console.log(action.data);
+            let deleted = state.findIndex((m) => {
+                if(m._id === action.data) return true;
+                return false;
+            });
+            return [...state.splice(0, deleted), ...state.splice(deleted+1, state.length)];
+        case 'DELETE_MOVIE_ERROR':
+            return state;
         default:
             return state;
     }
