@@ -6,6 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import BackIcon from '@material-ui/icons/ArrowBack';
 
 const styles = {
     root: {
@@ -27,6 +29,11 @@ function ButtonAppBar(props) {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
+                    {(props.history.length > 1) ? (
+                        <IconButton color="inherit" aria-label="Back" onClick={() => props.history.goBack()}>
+                            <BackIcon />
+                        </IconButton>
+                    ) : null}
                     <Typography variant="h6" color="inherit" className={classes.grow}>
                         35mm
                     </Typography>

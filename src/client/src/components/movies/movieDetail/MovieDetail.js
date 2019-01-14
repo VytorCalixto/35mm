@@ -1,4 +1,4 @@
-import { getMovies } from '../../../actions/actionCreator';
+import { editMovie } from '../../../actions/actionCreator';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -11,6 +11,14 @@ import MovieForm from '../MovieForm';
 const styles = theme => ({
     fab: {
         margin: theme.spacing.unit,
+    },
+    paper: {
+        margin: theme.spacing.unit * 3,
+        padding: theme.spacing.unit * 2,
+        [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+            margin: theme.spacing.unit * 6,
+            padding: theme.spacing.unit * 3,
+        },
     },
 });
 
@@ -26,12 +34,11 @@ class MovieDetail extends Component {
             if (m._id === this.props.match.params.movieId) return m;
             return false;
         });
-        console.log(movie);
         return (
             <div>
                 {movie ? (
                     <div>
-                        <Paper>
+                        <Paper className={classes.paper}>
                             <Typography variant='h2' component='h1'>
                                 {movie.title}
                             </Typography>
@@ -48,12 +55,16 @@ class MovieDetail extends Component {
                                 {movie.plot}
                             </Typography>
                         </Paper>
-                        <Fab color="primary" aria-label="Add" className={classes.fab} onClick={() => { this.state.edit = !this.state.edit }}>
+                        <Fab color="primary" aria-label="Add" className={classes.fab} onClick={() => { this.setState({ edit: !this.state.edit }) }}>
                             <Icon>edit_icon</Icon>
                         </Fab>
                     </div>
                 ) : null}
-                <MovieForm />
+                {this.state.edit ? (
+                    <Paper className={classes.paper}>
+                        <MovieForm movie={movie} buttonName="Editar" submit={this.props.updateMovie} />
+                    </Paper>
+                ) : null}
             </div>
         );
     }
@@ -67,8 +78,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAllMovies: () => {
-            dispatch(getMovies());
+        updateMovie: (movie) => {
+            dispatch(editMovie(movie));
         }
     }
 }

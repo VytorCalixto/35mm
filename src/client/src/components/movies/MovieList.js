@@ -30,7 +30,7 @@ class MovieList extends Component {
         let movies = this.props.movies;
         return (
             <div>
-                <Grid container className={classes.root} spacing={16}>
+                <Grid container className={classes.root} spacing={12} alignItems="center" justify="space-evenly">
                     {movies.map((movie, index) => (
                         <Grid item xs={3} key={index}>
                             <MovieCard movie={movie} index={index} />
