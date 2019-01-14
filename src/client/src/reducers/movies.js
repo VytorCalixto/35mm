@@ -10,11 +10,17 @@ function movies(state = [], action) {
             return state;
         case 'EDIT_MOVIE_SUCCESS':
             let index = state.findIndex((m) => {
-                if(m._id === action.data._id) return true;
+                if (m._id === action.data._id) return true;
                 return false;
             })
-            return [...state.splice(0, index), action.data, ...state.splice(index+1, state.length)];
+            return [...state.splice(0, index), action.data, ...state.splice(index + 1, state.length)];
         case 'EDIT_MOVIE_ERROR':
+            return state;
+        case 'ADD_MOVIE':
+            return state;
+        case 'ADD_MOVIE_SUCCESS':
+            return [...state, action.data];
+        case 'ADD_MOVIE_ERROR':
             return state;
         default:
             return state;

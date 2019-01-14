@@ -49,7 +49,7 @@ class MovieForm extends Component {
             actors: this.state.actors,
             plot: this.state.plot,
             trailer: this.state.trailer,
-            _id: this.props.movie._id
+            _id: (this.props.movie) ? this.props.movie._id : null
         }
         this.props.submit(movie);
     }

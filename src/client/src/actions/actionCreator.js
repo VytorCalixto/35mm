@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_URL = 'http://localhost:3333/api/v1/';
+const OMDB_API = 'http://www.omdbapi.com/';
 
 // Movies actions
 export function getMovies() {
@@ -16,7 +17,6 @@ export function getMovies() {
 }
 
 export function editMovie(movie) {
-    console.log(movie);
     return (dispatch) => {
         dispatch({ type: 'EDIT_MOVIE' });
         axios.put(API_URL + '/movies/' + movie._id, movie).then((res) => {
@@ -24,6 +24,31 @@ export function editMovie(movie) {
             dispatch({ type: 'EDIT_MOVIE_SUCCESS', data });
         }).catch((err) => {
             dispatch({ type: 'EDIT_MOVIE_ERROR', err });
+        });
+    };
+}
+
+export function addMovie(movie) {
+    return (dispatch) => {
+        dispatch({ type: 'ADD_MOVIE' });
+        axios.post(API_URL + '/movies/', movie).then((res) => {
+            const data = res.data.movie;
+            dispatch({ type: 'ADD_MOVIE_SUCCESS', data });
+        }).catch((err) => {
+            dispatch({ type: 'ADD_MOVIE_ERROR', err });
+        });
+    };
+}
+
+// OMDB API
+export function searchOMDB(title) {
+    return (dispatch) => {
+        dispatch({type: 'SEARCH_MOVIE'});
+        axios.get(OMDB_API + '?t=' + title).then((res) => {
+            const data = res.data.movie;
+            dispatch({ type: 'SEARCH_MOVIE_SUCCESS', data });
+        }).catch((err) => {
+            dispatch({ type: 'SEARCH_MOVIE_ERROR', err });
         });
     };
 }

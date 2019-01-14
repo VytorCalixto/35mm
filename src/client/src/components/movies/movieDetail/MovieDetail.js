@@ -7,10 +7,16 @@ import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import MovieForm from '../MovieForm';
+import TrailerEmbed from './TrailerEmbed';
 
 const styles = theme => ({
     fab: {
+        float: 'right',
+        position: 'fixed',
+        right: '10%',
+        bottom: '10%',
         margin: theme.spacing.unit,
+        zIndex: 1300,
     },
     paper: {
         margin: theme.spacing.unit * 3,
@@ -49,8 +55,9 @@ class MovieDetail extends Component {
                                 <br />
                                 {movie.actors}
                                 <br />
-                                {movie.trailer}
+                                {/* {movie.trailer} */}
                             </Typography>
+                            <TrailerEmbed videoUrl={movie.trailer}/>
                             <Typography component="p">
                                 {movie.plot}
                             </Typography>
@@ -62,7 +69,7 @@ class MovieDetail extends Component {
                 ) : null}
                 {this.state.edit ? (
                     <Paper className={classes.paper}>
-                        <MovieForm movie={movie} buttonName="Editar" submit={this.props.updateMovie} />
+                        <MovieForm movie={movie} buttonName="Edit" submit={this.props.updateMovie} />
                     </Paper>
                 ) : null}
             </div>
