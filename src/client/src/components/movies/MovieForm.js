@@ -22,14 +22,29 @@ class MovieForm extends Component {
     }
 
     componentWillMount() {
-        if(!this.state.set && this.props.movie) {
+        if(!this.state.set && Object.keys(this.props.movie).length) {
             this.setState({
-                title: this.props.movie.title,
-                genre: this.props.movie.genre,
-                release_date: this.props.movie.release_date,
-                actors: this.props.movie.actors,
-                plot: this.props.movie.plot,
-                trailer: this.props.movie.trailer,
+                title: this.props.movie.title || this.props.movie.Title || '',
+                genre: this.props.movie.genre || this.props.movie.Genre || '',
+                release_date: this.props.movie.release_date || this.props.movie.Released || '',
+                actors: this.props.movie.actors || this.props.movie.Actors || '',
+                plot: this.props.movie.plot || this.props.movie.Plot || '',
+                trailer: this.props.movie.trailer || '',
+                set: true
+            });
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.movie);
+        if(nextProps.movie) {
+            this.setState({
+                title: nextProps.movie.title || nextProps.movie.Title || '',
+                genre: nextProps.movie.genre || nextProps.movie.Genre || '',
+                release_date: nextProps.movie.release_date || nextProps.movie.Released || '',
+                actors: nextProps.movie.actors || nextProps.movie.Actors || '',
+                plot: nextProps.movie.plot || nextProps.movie.Plot || '',
+                trailer: nextProps.movie.trailer || '',
                 set: true
             });
         }
@@ -49,7 +64,7 @@ class MovieForm extends Component {
             actors: this.state.actors,
             plot: this.state.plot,
             trailer: this.state.trailer,
-            _id: (this.props.movie) ? this.props.movie._id : null
+            _id: (this.props.movie) ? (this.props.movie._id || null) : null
         }
         this.props.submit(movie);
     }
@@ -57,7 +72,7 @@ class MovieForm extends Component {
     render() {
         return (
             <React.Fragment>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="h5" gutterBottom>
                     Movie
                 </Typography>
                 <Grid container spacing={24}>
@@ -80,7 +95,7 @@ class MovieForm extends Component {
                         <TextField variant="outlined" id="trailer" name="trailer" label="Trailer Link" fullWidth onChange={this.handleInputChange} value={this.state.trailer}/>
                     </Grid>
                 </Grid>
-                <Button color="primary" onClick={this.handleSubmit}>{this.props.buttonName}</Button>
+                <Button variant="outlined" color="primary" onClick={this.handleSubmit}>{this.props.buttonName}</Button>
             </React.Fragment>
         );
     }

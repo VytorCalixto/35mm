@@ -3,11 +3,13 @@ import MovieCard from './MovieCard';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
+import CloseIcon from '@material-ui/icons/Close';
 import Fab from '@material-ui/core/Fab';
 import MovieForm from './MovieForm';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 import { addMovie } from '../../actions/actionCreator';
+import OMDBSearch from './OMDBSearch';
 
 const styles = theme => ({
     root: {
@@ -46,12 +48,16 @@ class MovieList extends Component {
         }
     }
 
+    componentWillMount() {
+        this.props.cleanOMDB();
+    }
+
     render() {
         const { classes } = this.props;
         let movies = this.props.movies;
         return (
             <div>
-                <Grid container className={classes.root} spacing={12} alignItems="stretch" justify="space-evenly">
+                <Grid container className={classes.root} spacing={16} alignItems="stretch" justify="space-evenly">
                     {movies.map((movie, index) => (
                         <Grid item xs={3} key={index}>
                             <MovieCard movie={movie} index={index} />
@@ -59,11 +65,12 @@ class MovieList extends Component {
                     ))}
                 </Grid>
                 <Fab color="primary" aria-label="Add" className={classes.fab} onClick={() => this.setState({ add: !this.state.add })}>
-                    <AddIcon />
+                    {this.state.add ? (<CloseIcon />) : (<AddIcon />)}
                 </Fab>
                 {this.state.add ? (
                     <Paper className={classes.paper}>
-                        <MovieForm buttonName="Add" submit={this.props.addMovie} />
+                        <MovieForm buttonName="Add" submit={this.props.addMovie} movie={this.props.omdb} />
+                        <OMDBSearch/>
                     </Paper>
                 ) : null}
             </div>
@@ -72,13 +79,18 @@ class MovieList extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        omdb: state.omdb
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         addMovie: (movie) => {
             dispatch(addMovie(movie));
+        },
+        cleanOMDB: () => {
+            dispatch({type: 'CLEAN_OMDB'});
         }
     }
 }

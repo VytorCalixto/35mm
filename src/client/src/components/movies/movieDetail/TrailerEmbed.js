@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Typography from '@material-ui/core/Typography';
 
 class TrailerEmbed extends Component {
     constructor(props) {
@@ -10,7 +9,7 @@ class TrailerEmbed extends Component {
     getVideoId(url) {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         let match = url.match(regExp);
-        return (match && match[2].length == 11) ? match[2] : false;
+        return (match && match[2].length === 11) ? match[2] : false;
     }
 
     render() {
@@ -18,7 +17,7 @@ class TrailerEmbed extends Component {
         return (
             <div>
                 {videoId ? (
-                    <iframe width="560" height="315" src={"//www.youtube.com/embed/" + videoId} frameborder="0" allowFullScreen></iframe>
+                    <iframe title="youtube-trailer" width="560" height="315" src={"//www.youtube.com/embed/" + videoId} frameborder="0" allowFullScreen></iframe>
                 ): null}
             </div>
         );
