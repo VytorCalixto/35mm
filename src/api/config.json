@@ -1,7 +1,7 @@
 {
     "development":
     {
-        "port": 3000,
+        "port": 3333,
         "ip": "127.0.0.1",
         "debug" : true,
         "mongodb" : {
