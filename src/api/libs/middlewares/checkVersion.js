@@ -1,6 +1,6 @@
 /*
 35mm API
-Copyright (C) 2018 Vytor Calixto
+Copyright (C) 2019 Vytor Calixto
 
 This file is part of 35mm.
 
@@ -32,7 +32,7 @@ module.exports = () => {
     const minNodeVersion = parseVersionNumber(packageConf.engines.node);
     const currentNodeVersion = parseVersionNumber(process.version);
     if (minNodeVersion > currentNodeVersion) {
-        log.error(`You must upgrade node to >=${minNodeVersion}.x to use simcaq-node!`);
+        log.error(`You must upgrade node to >=${minNodeVersion}.x to use 35mm!`);
         return false;
     } else {
         log.info('Node version should work!');

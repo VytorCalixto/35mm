@@ -1,6 +1,6 @@
 /*
 35mm API
-Copyright (C) 2018 Vytor Calixto
+Copyright (C) 2019 Vytor Calixto
 
 This file is part of 35mm.
 
