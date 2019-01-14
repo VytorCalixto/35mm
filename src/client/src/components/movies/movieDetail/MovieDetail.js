@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
+import CloseIcon from '@material-ui/icons/Close';
 import MovieForm from '../MovieForm';
 import TrailerEmbed from './TrailerEmbed';
 
@@ -57,13 +58,13 @@ class MovieDetail extends Component {
                                 <br />
                                 {/* {movie.trailer} */}
                             </Typography>
-                            <TrailerEmbed videoUrl={movie.trailer}/>
+                            <TrailerEmbed videoUrl={movie.trailer} />
                             <Typography component="p">
                                 {movie.plot}
                             </Typography>
                         </Paper>
                         <Fab color="primary" aria-label="Add" className={classes.fab} onClick={() => { this.setState({ edit: !this.state.edit }) }}>
-                            <Icon>edit_icon</Icon>
+                            {this.state.edit ? (<CloseIcon />) : (<Icon>edit_icon</Icon>)}
                         </Fab>
                     </div>
                 ) : null}

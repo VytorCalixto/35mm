@@ -3,7 +3,8 @@ import rootReducer from './reducers/index';
 import thunk from 'redux-thunk';
 
 const defaultState = {
-    movies: []
+    movies: [],
+    omdb: {}
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

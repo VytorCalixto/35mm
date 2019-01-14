@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_URL = 'http://localhost:3333/api/v1/';
-const OMDB_API = 'http://www.omdbapi.com/';
+const OMDB_API = 'http://www.omdbapi.com/?apikey=a8aae0f1&';
 
 // Movies actions
 export function getMovies() {
@@ -44,8 +44,8 @@ export function addMovie(movie) {
 export function searchOMDB(title) {
     return (dispatch) => {
         dispatch({type: 'SEARCH_MOVIE'});
-        axios.get(OMDB_API + '?t=' + title).then((res) => {
-            const data = res.data.movie;
+        axios.get(OMDB_API + 't=' + title).then((res) => {
+            const data = res.data;
             dispatch({ type: 'SEARCH_MOVIE_SUCCESS', data });
         }).catch((err) => {
             dispatch({ type: 'SEARCH_MOVIE_ERROR', err });
