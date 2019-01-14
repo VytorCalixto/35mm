@@ -26,6 +26,4 @@ const log = require(`${libs}/log`);
 
 conf = conf[process.env.NODE_ENV];
 
-log.info(`Config for ${process.env.NODE_ENV} loaded`);
-
 module.exports = conf;
