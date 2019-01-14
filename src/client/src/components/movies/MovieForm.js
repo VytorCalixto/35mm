@@ -15,6 +15,7 @@ class MovieForm extends Component {
             actors: '',
             plot: '',
             trailer: '',
+            poster: '',
             set: false
         }
 
@@ -31,6 +32,7 @@ class MovieForm extends Component {
                 actors: this.props.movie.actors || this.props.movie.Actors || '',
                 plot: this.props.movie.plot || this.props.movie.Plot || '',
                 trailer: this.props.movie.trailer || '',
+                poster: this.props.movie.poster || this.props.movie.Poster || '',
                 set: true
             });
         }
@@ -46,6 +48,7 @@ class MovieForm extends Component {
                 actors: nextProps.movie.actors || nextProps.movie.Actors || '',
                 plot: nextProps.movie.plot || nextProps.movie.Plot || '',
                 trailer: nextProps.movie.trailer || '',
+                poster: nextProps.movie.poster || nextProps.movie.Poster || '',
                 set: true
             });
         }
@@ -65,6 +68,7 @@ class MovieForm extends Component {
             actors: this.state.actors,
             plot: this.state.plot,
             trailer: this.state.trailer,
+            poster: this.state.poster,
             _id: (this.props.movie) ? (this.props.movie._id || null) : null
         }
         this.props.submit(movie);
@@ -94,6 +98,9 @@ class MovieForm extends Component {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <TextField variant="outlined" id="trailer" name="trailer" label="Trailer Link" fullWidth onChange={this.handleInputChange} value={this.state.trailer} />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField variant="outlined" id="poster" name="poster" label="Poster Link" fullWidth onChange={this.handleInputChange} value={this.state.poster} />
                     </Grid>
                 </Grid>
                 <Button variant="contained" color="primary" onClick={this.handleSubmit}>

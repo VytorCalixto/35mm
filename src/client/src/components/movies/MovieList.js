@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 import { addMovie } from '../../actions/actionCreator';
 import OMDBSearch from './OMDBSearch';
+import { Typography } from '@material-ui/core';
 
 const styles = theme => ({
     root: {
@@ -57,22 +58,28 @@ class MovieList extends Component {
         let movies = this.props.movies;
         return (
             <div>
-                <Grid container className={classes.root} spacing={16} alignItems="stretch" justify="space-evenly">
-                    {movies.map((movie, index) => (
-                        <Grid item xs={3} key={index}>
-                            <MovieCard movie={movie} index={index} />
-                        </Grid>
-                    ))}
-                </Grid>
-                <Fab color="primary" aria-label="Add" className={classes.fab} onClick={() => this.setState({ add: !this.state.add })}>
-                    {this.state.add ? (<CloseIcon />) : (<AddIcon />)}
-                </Fab>
                 {this.state.add ? (
                     <Paper className={classes.paper}>
                         <MovieForm buttonName="Add" submit={this.props.addMovie} movie={this.props.omdb} />
-                        <OMDBSearch/>
+                        <OMDBSearch />
                     </Paper>
                 ) : null}
+                {movies.length ? (
+                    <Grid container className={classes.root} spacing={16} alignItems="stretch" justify="space-evenly">
+                        {movies.map((movie, index) => (
+                            <Grid item xs={4} key={index}>
+                                <MovieCard movie={movie} index={index} />
+                            </Grid>
+                        ))}
+                    </Grid>
+                ) : (
+                        <Paper className={classes.paper}>
+                            <Typography variant="display2">Looks like there's no movies. Why don't you add one?</Typography>
+                        </Paper>
+                    )}
+                <Fab color="secondary" aria-label="Add" className={classes.fab} onClick={() => this.setState({ add: !this.state.add })}>
+                    {this.state.add ? (<CloseIcon />) : (<AddIcon />)}
+                </Fab>
             </div>
         );
     }
@@ -90,7 +97,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(addMovie(movie));
         },
         cleanOMDB: () => {
-            dispatch({type: 'CLEAN_OMDB'});
+            dispatch({ type: 'CLEAN_OMDB' });
         }
     }
 }

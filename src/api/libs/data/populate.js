@@ -13,6 +13,7 @@ function populate() {
             actors: m.actors,
             plot: m.plot,
             trailer: m.trailer,
+            poster: m.poster
         });
     
         movie.save((err, movie) => {

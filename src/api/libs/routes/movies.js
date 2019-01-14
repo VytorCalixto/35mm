@@ -58,7 +58,8 @@ movieApp.post('/', (req, res, next) => {
         release_date: req.body.release_date,
         actors: req.body.actors,
         plot: req.body.plot,
-        trailer: req.body.trailer
+        trailer: req.body.trailer,
+        poster: req.body.poster
     });
     movie.save((err) => {
         if(err) {
@@ -94,6 +95,7 @@ movieApp.put('/:id', (req, res, next) => {
         movie.actors = req.body.actors || movie.actors;
         movie.plot = req.body.plot || movie.plot;
         movie.trailer = req.body.trailer || movie.trailer;
+        movie.poster = req.body.poster || movie.poster;
 
         movie.save((err) => {
             if(err) {

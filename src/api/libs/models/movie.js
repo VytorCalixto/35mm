@@ -46,8 +46,10 @@ let MovieSchema = new Schema({
     },
     trailer: {
         type: String
+    },
+    poster: {
+        type: String
     }
-    // TODO: link to movie poster?
 });
 
 module.exports = mongoose.model('Movie', MovieSchema);

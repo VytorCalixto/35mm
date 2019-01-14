@@ -13,7 +13,7 @@ const AppRouter = ({ store }) => (
             <div>
                 <NavBar history={history} />
                 <Route path="/" exact component={Login} />
-                {/* <Route path="/login" component={Login} /> */}
+                <Route path="/login" component={Login} />
                 <Route path="/movies" component={Movies} />
                 {/* <Route path="/movies/:id" component={MovieDetail} /> */}
             </div>

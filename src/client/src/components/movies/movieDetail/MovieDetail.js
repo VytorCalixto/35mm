@@ -49,6 +49,7 @@ class MovieDetail extends Component {
                 {movie ? (
                     <div>
                         <Paper className={classes.paper}>
+                            <img src={movie.poster}/>
                             <Typography variant='h2' component='h1'>
                                 {movie.title}
                             </Typography>

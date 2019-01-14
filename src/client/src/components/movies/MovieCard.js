@@ -5,7 +5,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import CardMedia from '@material-ui/core/CardMedia';
 
 const styles = {
     card: {
@@ -22,6 +23,9 @@ const styles = {
     pos: {
         marginBottom: 12,
     },
+    media: {
+        height: 350,
+    },
 };
 
 class MovieCard extends Component {
@@ -30,6 +34,11 @@ class MovieCard extends Component {
         return (
             <Card className={classes.card}>
                 <CardContent>
+                    <CardMedia
+                        className={classes.media}
+                        image={this.props.movie.poster}
+                        title={this.props.title + " Poster"}
+                    />
                     <Typography variant='h5' component='h2'>
                         {this.props.movie.title}
                     </Typography>
@@ -39,10 +48,8 @@ class MovieCard extends Component {
                     <Typography component="p">
                         {this.props.movie.plot}
                     </Typography>
-
                 </CardContent>
                 <CardActions>
-                    
                     <Link to={"movies/" + this.props.movie._id}><Button size='small' variant="contained" color="primary">See More</Button></Link>
                 </CardActions>
             </Card>
