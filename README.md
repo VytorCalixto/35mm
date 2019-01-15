@@ -16,3 +16,23 @@ With enough time I'll would think of this project as group shared catalogue of
 movies and TV shows, enabling users to recommend movies and schedule times to
 watch their favorite shows together. Something more suited for family, groups 
 of close friends or individual use.
+
+## Using
+The API and the web client are all here. You have to setup both.
+
+**API**
+```bash
+cd src/api
+# Edit the config.json file as suited or leave it be
+npm i
+npm run populate # Populate with the seed data
+npm start
+```
+
+**CLIENT**
+```bash
+cd src/client
+npm i
+# If you changed the API port or ip address, you have to edit src/actions/actionCreators.js
+npm start
+```
